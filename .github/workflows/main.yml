@@ -31,6 +31,7 @@ jobs:
         run: |
           git fetch origin web || echo "Web branch does not exist yet"
           git checkout -B web origin/web || git checkout -b web
+          git checkout preview
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
