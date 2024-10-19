@@ -27,13 +27,13 @@ jobs:
       - name: Build Web
         run: flutter build web
 
-      - name: Checkout web branch (create if not exists)
-        run: |
-          git fetch origin web || echo "Web branch does not exist yet"
-          git checkout -B web origin/web || git checkout -b web
-          git checkout preview
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      # - name: Checkout web branch (create if not exists)
+      #   run: |
+      #     git fetch origin web || echo "Web branch does not exist yet"
+      #     git checkout -B web origin/web || git checkout -b web
+      #     git checkout preview
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
       - name: Copy new build/web contents
         run: |
