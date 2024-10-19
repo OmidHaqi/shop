@@ -27,7 +27,7 @@ jobs:
       - name: Pull latest changes from web branch
         run: |
           git fetch origin web
-          git checkout web
+          git checkout -B web origin/web
           git pull origin web
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
@@ -38,6 +38,6 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add build/web --force
           git commit -m "Build web output"
-          git push origin HEAD:refs/heads/web
+          git push origin web
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
