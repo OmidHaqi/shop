@@ -20,7 +20,10 @@ jobs:
 
     - name: Install dependencies
       run: flutter pub get
-
+      
+    - name: Config web
+      run: flutter config --enable-web
+      
     - name: Build for web
       run: flutter build web --release
 
@@ -29,7 +32,6 @@ jobs:
         git config --global user.name "Umut"
         git config --global user.email "omid.haqi@outlook.com"
         git checkout web
-        rm -rf *
         cp -r build/web/* .
         git add .
         git commit -m "Deploy web build from preview"
