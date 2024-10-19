@@ -13,13 +13,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       
-    - name: Remove web branch content
-      run: |
-        git config --global user.name "Umut"
-        git config --global user.email "omid.haqi@outlook.com"
-        git checkout web
-        rm -rf
-        git checkout preview
+    # - name: Remove web branch content
+    #   run: |
+    #     git config --global user.name "Umut"
+    #     git config --global user.email "omid.haqi@outlook.com"
+    #     git checkout web
+    #     rm -rf
+    #     git checkout preview
 
 
     - name: Set up Flutter
