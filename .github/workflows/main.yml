@@ -19,8 +19,6 @@ jobs:
         git config --global user.email "omid.haqi@outlook.com"
         git checkout web
         rm -rf
-        git commit -m "Remove web branch content"
-        git push origin web --force
         git checkout preview
 
 
@@ -42,8 +40,7 @@ jobs:
       run: |
         git config --global user.name "Umut"
         git config --global user.email "omid.haqi@outlook.com"
-        git checkout web
-        cp -r build/web/* .
+        cp build/web 
         git add .
         git commit -m "Deploy web build from preview"
         git push origin web
