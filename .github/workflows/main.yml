@@ -37,6 +37,7 @@ jobs:
 
       - name: Copy new build/web contents
         run: |
+          find . -mindepth 1 ! -name 'build' -exec rm -rf {} +
           cp -r build/web/* .;
       - name: Commit and Push to Web Branch
         run: |
