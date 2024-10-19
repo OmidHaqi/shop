@@ -31,10 +31,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
-      # - name: Force remove old contents from web branch
-      #   run: |
-      #     git rm -rf --ignore-unmatch .
-      #     git clean -fdx
+      - name: Force remove old contents from web branch
+        run: |
+          git rm -rf --ignore-unmatch .
+          git clean -fdx
 
       - name: Copy new build/web contents
         run: |
@@ -49,7 +49,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add --all
+          cd build/web/
+          git add .
           git commit -m "Update web build"
           git push origin web --force
         env:
