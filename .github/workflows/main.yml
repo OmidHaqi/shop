@@ -24,27 +24,28 @@ jobs:
       - name: Build Web
         run: flutter build web
 
-      - name: Stash local changes (if any)
-        run: git stash
-
-      - name: Pull latest changes from web branch
+      - name: Checkout web branch (create if not exists)
         run: |
           git fetch origin web || echo "Web branch does not exist yet"
           git checkout -B web origin/web || git checkout -b web
-          git pull origin web || echo "No changes to pull"
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
-      - name: Apply stashed changes
-        run: git stash pop || echo "No changes to apply"
-
-      - name: Push to Web Branch
+      - name: Remove old contents from web branch
         run: |
-          cd build/web
+          git rm -r --ignore-unmatch .
+          git clean -fdx
+
+      - name: Copy new build/web contents
+        run: |
+          cp -r build/web/* .
+
+      - name: Commit and Push to Web Branch
+        run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add --all
-          git commit -m "Build web output"
-          git push origin web
+          git commit -m "Update web build"
+          git push origin web --force
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
