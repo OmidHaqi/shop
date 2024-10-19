@@ -43,4 +43,4 @@ jobs:
         cd build/web 
         git add . --force
         git commit -m "Deploy web build from preview"
-        git push origin preview:web
+        git push origin web:preview
