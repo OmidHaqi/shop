@@ -38,7 +38,12 @@ jobs:
 
       - name: Copy new build/web contents
         run: |
-          cp -r build/web/* .
+          if [ -d "build/web" ]; then
+            cp -r build/web/* .;
+          else
+            echo "Error: build/web directory does not exist.";
+            exit 1;
+          fi
 
       - name: Commit and Push to Web Branch
         run: |
