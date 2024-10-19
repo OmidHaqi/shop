@@ -1,56 +1,36 @@
-name: "Build & Deploy Web"
+name: Build and Deploy Web
+
 on:
   push:
     branches:
       - preview
 
 jobs:
-  build-web:
-    name: Build Web and Push to Web Branch
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.24.3'
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.24.3'
 
-      - name: Install dependencies
-        run: flutter pub get
+    - name: Install dependencies
+      run: flutter pub get
 
-      - name: Build Web
-        run: flutter build web
+    - name: Build for web
+      run: flutter build web --release
 
-      - name: Checkout web branch (create if not exists)
-        run: |
-          git fetch origin web || echo "Web branch does not exist yet"
-          git checkout -B web origin/web || git checkout -b web
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-
-      - name: Force remove old contents from web branch
-        run: |
-          git rm -rf --ignore-unmatch .
-          git clean -fdx
-
-      - name: Copy new build/web contents
-        run: |
-          if [ -d "build/web" ]; then
-            cp -r build/web/* .;
-          else
-            echo "Error: build/web directory does not exist.";
-            exit 1;
-          fi
-
-      - name: Commit and Push to Web Branch
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add --all
-          git commit -m "Update web build"
-          git push origin web --force
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+    - name: Deploy to web branch
+      run: |
+        git config --global user.name "Umut"
+        git config --global user.email "omid.haqi@outlook.com"
+        git checkout web
+        rm -rf *
+        cp -r build/web/* .
+        git add .
+        git commit -m "Deploy web build from preview"
+        git push origin web
