@@ -40,6 +40,7 @@ jobs:
 
       - name: Push to Web Branch
         run: |
+          cd build/web
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add --all
