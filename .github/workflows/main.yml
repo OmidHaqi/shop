@@ -29,9 +29,9 @@ jobs:
 
       - name: Pull latest changes from web branch
         run: |
-          git fetch origin web
-          git checkout -B web origin/web
-          git pull origin web
+          git fetch origin web || echo "Web branch does not exist yet"
+          git checkout -B web origin/web || git checkout -b web
+          git pull origin web || echo "No changes to pull"
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
@@ -42,8 +42,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          cd build/web
-          git init 
           git add --all
           git commit -m "Build web output"
           git push origin web
