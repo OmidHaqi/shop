@@ -32,4 +32,4 @@ jobs:
           git commit -m "Build web output"
           git push origin HEAD:refs/heads/web
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }} 
