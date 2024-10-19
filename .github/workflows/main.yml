@@ -22,7 +22,15 @@ jobs:
         run: flutter pub get
 
       - name: Build Web
-        run: flutter build web 
+        run: flutter build web
+
+      - name: Pull latest changes from web branch
+        run: |
+          git fetch origin web
+          git checkout web
+          git pull origin web
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
       - name: Push to Web Branch
         run: |
