@@ -31,9 +31,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
-      - name: Remove old contents from web branch
+      - name: Force remove old contents from web branch
         run: |
-          git rm -r --ignore-unmatch .
+          git rm -rf --ignore-unmatch .
           git clean -fdx
 
       - name: Copy new build/web contents
