@@ -24,6 +24,9 @@ jobs:
       - name: Build Web
         run: flutter build web
 
+      - name: Stash local changes (if any)
+        run: git stash
+
       - name: Pull latest changes from web branch
         run: |
           git fetch origin web
@@ -31,6 +34,9 @@ jobs:
           git pull origin web
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Apply stashed changes
+        run: git stash pop || echo "No changes to apply"
 
       - name: Push to Web Branch
         run: |
