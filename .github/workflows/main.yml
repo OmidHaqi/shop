@@ -21,20 +21,35 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Enable Web 
+        run: flutter config --enable-web 
+
       - name: Build Web
         run: flutter build web
 
-
-      - name: Commit and Push to Web Branch
+      - name: Checkout web branch (create if not exists)
         run: |
-          cd build/web
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git init
-          git add .
-          git commit -m "Update web build"
           git fetch origin web || echo "Web branch does not exist yet"
           git checkout -B web origin/web || git checkout -b web
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Copy new build/web contents
+        run: |
+          if [ -d "build/web" ]; then
+            find . -mindepth 1 ! -name 'build' -exec rm -rf {} +
+            cp -r build/web/* .;
+            rm -rf build
+          else
+            echo "Error: build/web directory does not exist.";
+            exit 1;
+          fi
+      - name: Commit and Push to Web Branch
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add --all
+          git commit -m "Update web build"
           git push origin web --force
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
