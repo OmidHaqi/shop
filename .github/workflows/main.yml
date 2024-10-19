@@ -19,6 +19,8 @@ jobs:
         git config --global user.email "omid.haqi@outlook.com"
         git checkout web
         rm -rf
+        git commit -m "Remove web branch content"
+        git push origin web --force
         git checkout preview
 
 
