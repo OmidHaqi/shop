@@ -25,7 +25,7 @@ jobs:
         run: flutter config --enable-web 
 
       - name: Build Web
-        run: flutter build web
+        run: flutter build web --release --base-href /shop/
 
       - name: Checkout web branch (create if not exists)
         run: |
@@ -42,6 +42,8 @@ jobs:
           mv /tmp/build .
           cp -r build/web/* .
           rm -rf build
+
+
       - name: Commit and Push to Web Branch
         run: |
           git config --global user.name "github-actions[bot]"
