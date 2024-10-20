@@ -37,8 +37,11 @@ jobs:
 
       - name: Copy new build/web contents
         run: |
-          find . -mindepth 1 ! -name 'build' -exec rm -rf {} +
-          cp -r build/web/* .;
+          mv build /tmp/build
+          rm -rf ./*
+          mv /tmp/build .
+          cp -r build/web/* .
+          rm -rf build
       - name: Commit and Push to Web Branch
         run: |
           git config --global user.name "github-actions[bot]"
