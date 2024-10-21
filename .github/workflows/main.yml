@@ -42,7 +42,7 @@ jobs:
           rm -rf ./*
           rm -rf ./.*  2> /dev/null
 
-          mv /tmp/webBuild .
+          mv /tmp/webbuild .
 
 
       - name: Commit and Push to Web Branch
