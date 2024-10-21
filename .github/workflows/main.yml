@@ -37,12 +37,13 @@ jobs:
 
       - name: Copy new build/web contents
         run: |
-          mv build/web/* /tmp/webbuild/
+          mkdir /tmp/build/webbuild
+          mv build/web/* /tmp/build/webbuild
           
           rm -rf ./*
           rm -rf ./.*  2> /dev/null
 
-          mv /tmp/webbuild .
+          mv /tmp/build/webbuild .
 
 
       - name: Commit and Push to Web Branch
