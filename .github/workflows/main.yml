@@ -37,13 +37,13 @@ jobs:
 
       - name: Copy new build/web contents
         run: |
-          mkdir /tmp/build/webbuild
-          mv build/web/* /tmp/build/webbuild
-          
+          mv build /tmp/build
           rm -rf ./*
-          rm -rf ./.*  2> /dev/null
+          mv /tmp/build .
+          cp -r build/web/* .
+          rm -rf build .dart_tool
+          
 
-          mv /tmp/build/webbuild .
 
 
       - name: Commit and Push to Web Branch
