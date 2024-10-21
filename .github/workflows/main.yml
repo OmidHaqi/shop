@@ -37,12 +37,9 @@ jobs:
 
       - name: Copy new build/web contents
         run: |
-          mv build /tmp/build
-          rm -rf ./*
-          mv /tmp/build .
-          cp -r build/web/* .
-          rm -rf build
-
+          mv build/web /tmp/webBuild
+          rm -rf ./ ./*
+          mv /tmp/webBuild .
 
       - name: Commit and Push to Web Branch
         run: |
