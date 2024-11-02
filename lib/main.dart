@@ -1,33 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:shop/features/intro/presentation/splash_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop/features/intro/presentation/cubit/splash_cubit.dart';
+import 'package:shop/main_warper.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Shop',
-      home: SplashScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Hello from shop"),
-      ),
-    );
-  }
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => SplashCubit(),
+        ),
+      ],
+      child: const MainWarper(),
+    ),
+  );
 }

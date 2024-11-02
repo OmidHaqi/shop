@@ -17,6 +17,8 @@ dependencies:
   bloc: ^8.1.4
   equatable: ^2.0.5
   delayed_widget: ^1.1.2
+  connectivity_plus: ^6.1.0
+  loading_animation_widget: ^1.3.0
 
 dev_dependencies:
   flutter_test:
