@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop/features/home/presentation/home_screen.dart';
 import 'package:shop/features/intro/presentation/splash_screen.dart';
 
 class MainWarper extends StatelessWidget {
@@ -6,10 +7,12 @@ class MainWarper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: "/",
+      routes: {HomeScreen.routeName: (context) => const HomeScreen()},
       title: 'Shop',
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
