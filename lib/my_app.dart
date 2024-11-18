@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:shop/common/widgets/main_wrapper.dart';
 import 'package:shop/config/my_theme.dart';
 import 'package:shop/features/home/presentation/home_screen.dart';
 import 'package:shop/features/intro/presentation/intro_main_wrapper.dart';
 import 'package:shop/features/intro/presentation/splash_screen.dart';
 
-class MainWarper extends StatelessWidget {
-  const MainWarper({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +28,9 @@ class MainWarper extends StatelessWidget {
         Locale("fa", ""),
       ],
       routes: {
-        HomeScreen.routeName: (context) => const HomeScreen(),
+        HomeScreen.routeName: (context) => HomeScreen(),
         IntroMainWrapper.routeName: (context) => IntroMainWrapper(),
+        MainWrapper.routeName: (context) => MainWrapper(),
       },
       title: 'Shop',
       home: const SplashScreen(),

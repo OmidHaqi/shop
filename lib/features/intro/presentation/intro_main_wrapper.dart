@@ -36,129 +36,124 @@ class IntroMainWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final args = ModalRoute.of(context)!.settings.arguments as String;
-    /// get device size
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
-    return BlocProvider(
-      create: (context) => IntroCubit(),
-      child: Builder(builder: (context) {
-        return Scaffold(
-          body: Stack(
-            children: [
-              /// image
-              Positioned(
-                top: 0,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.amber,
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(150),
-                    ),
-                  ),
-                  width: width,
-                  height: height * 0.6,
-                ),
-              ),
-
-              Positioned(
-                bottom: height * 0.1,
-                child: SizedBox(
-                  width: width,
-                  height: height * 0.9,
-                  child: PageView(
-                    onPageChanged: (index) {
-                      if (index == 2) {
-                        BlocProvider.of<IntroCubit>(context)
-                            .changeGetStart(true);
-                      } else {
-                        BlocProvider.of<IntroCubit>(context)
-                            .changeGetStart(false);
-                      }
-                    },
-                    controller: pageController,
-                    children: introPages,
+    return Builder(builder: (context) {
+      return Scaffold(
+        body: Stack(
+          children: [
+            /// image
+            Positioned(
+              top: 0,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.amber,
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(150),
                   ),
                 ),
+                width: width,
+                height: height * 0.6,
               ),
-
-              /// GetStarted Btn
-              Positioned(
-                bottom: height * 0.07,
-                right: 30,
-                child: BlocBuilder<IntroCubit, IntroState>(
-                  builder: (context, state) {
-                    if (state.showGetStart) {
-                      return GetStartBtn(
-                        text: 'شروع کنید',
-                        onTap: () {
-                          PrefsOperator prefsOperator =
-                              locator<PrefsOperator>();
-                          prefsOperator.changeIntroState();
-                          /// goto home screen
-                          Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            HomeScreen.routeName,
-                            ModalRoute.withName("home_screen"),
-                          );
-                        },
-                      );
+            ),
+    
+            Positioned(
+              bottom: height * 0.1,
+              child: SizedBox(
+                width: width,
+                height: height * 0.9,
+                child: PageView(
+                  onPageChanged: (index) {
+                    if (index == 2) {
+                      BlocProvider.of<IntroCubit>(context)
+                          .changeGetStart(true);
                     } else {
-                      return DelayedWidget(
-                        delayDuration:
-                            const Duration(milliseconds: 500), // Not required
-                        animationDuration:
-                            const Duration(seconds: 1), // Not required
-                        animation:
-                            DelayedAnimations.SLIDE_FROM_BOTTOM, // Not required
-                        child: GetStartBtn(
-                          text: 'ورق بزن',
-                          onTap: () {
-                            if (pageController.page!.toInt() < 2) {
-                              if (pageController.page!.toInt() == 1) {
-                                BlocProvider.of<IntroCubit>(context)
-                                    .changeGetStart(true);
-                              }
-
-                              pageController.animateToPage(
-                                  pageController.page!.toInt() + 1,
-                                  duration: const Duration(milliseconds: 400),
-                                  curve: Curves.easeIn);
-                            }
-                          },
-                        ),
-                      );
+                      BlocProvider.of<IntroCubit>(context)
+                          .changeGetStart(false);
                     }
                   },
+                  controller: pageController,
+                  children: introPages,
                 ),
               ),
-
-              Positioned(
-                bottom: height * 0.07,
-                left: 30,
-                child: DelayedWidget(
-                  delayDuration:
-                      const Duration(milliseconds: 300), // Not required
-                  animationDuration: const Duration(seconds: 1), // Not required
-                  animation:
-                      DelayedAnimations.SLIDE_FROM_BOTTOM, // Not required
-                  child: SmoothPageIndicator(
-                    controller: pageController,
-                    count: 3,
-                    effect: const ExpandingDotsEffect(
-                      dotWidth: 10,
-                      dotHeight: 10,
-                      spacing: 5,
-                      activeDotColor: Colors.amber,
-                    ),
+            ),
+    
+            /// GetStarted Btn
+            Positioned(
+              bottom: height * 0.07,
+              right: 30,
+              child: BlocBuilder<IntroCubit, IntroState>(
+                builder: (context, state) {
+                  if (state.showGetStart) {
+                    return GetStartBtn(
+                      text: 'شروع کنید',
+                      onTap: () {
+                        PrefsOperator prefsOperator =
+                            locator<PrefsOperator>();
+                        prefsOperator.changeIntroState();
+                        /// goto home screen
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          HomeScreen.routeName,
+                          ModalRoute.withName("home_screen"),
+                        );
+                      },
+                    );
+                  } else {
+                    return DelayedWidget(
+                      delayDuration:
+                          const Duration(milliseconds: 500), // Not required
+                      animationDuration:
+                          const Duration(seconds: 1), // Not required
+                      animation:
+                          DelayedAnimations.SLIDE_FROM_BOTTOM, // Not required
+                      child: GetStartBtn(
+                        text: 'ورق بزن',
+                        onTap: () {
+                          if (pageController.page!.toInt() < 2) {
+                            if (pageController.page!.toInt() == 1) {
+                              BlocProvider.of<IntroCubit>(context)
+                                  .changeGetStart(true);
+                            }
+    
+                            pageController.animateToPage(
+                                pageController.page!.toInt() + 1,
+                                duration: const Duration(milliseconds: 400),
+                                curve: Curves.easeIn);
+                          }
+                        },
+                      ),
+                    );
+                  }
+                },
+              ),
+            ),
+    
+            Positioned(
+              bottom: height * 0.07,
+              left: 30,
+              child: DelayedWidget(
+                delayDuration:
+                    const Duration(milliseconds: 300), // Not required
+                animationDuration: const Duration(seconds: 1), // Not required
+                animation:
+                    DelayedAnimations.SLIDE_FROM_BOTTOM, // Not required
+                child: SmoothPageIndicator(
+                  controller: pageController,
+                  count: 3,
+                  effect: const ExpandingDotsEffect(
+                    dotWidth: 10,
+                    dotHeight: 10,
+                    spacing: 5,
+                    activeDotColor: Colors.amber,
                   ),
                 ),
-              )
-            ],
-          ),
-        );
-      }),
-    );
+              ),
+            )
+          ],
+        ),
+      );
+    });
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shop/common/utils/prefs_operator.dart';
-import 'package:shop/features/home/presentation/home_screen.dart';
+import 'package:shop/common/widgets/main_wrapper.dart';
 import 'package:shop/features/intro/presentation/bloc/splash_cubit/splash_cubit.dart';
 import 'package:shop/features/intro/presentation/intro_main_wrapper.dart';
 import 'package:shop/locator.dart';
@@ -114,8 +114,8 @@ class _SplashScreenState extends State<SplashScreen> {
         if (!mounted) return;
         Navigator.pushNamedAndRemoveUntil(
           context,
-          HomeScreen.routeName,
-          ModalRoute.withName("home_screen"),
+          MainWrapper.routeName,
+          ModalRoute.withName("main_wrapper"),
         );
       }
     });
