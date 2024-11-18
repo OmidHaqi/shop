@@ -1,5 +1,8 @@
 name: "Build & Deploy Web"
 on:
+  pull_request:
+    branches:
+      - preview
   push:
     branches:
       - preview
