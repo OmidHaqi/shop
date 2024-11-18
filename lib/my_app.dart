@@ -28,12 +28,12 @@ class MyApp extends StatelessWidget {
         Locale("fa", ""),
       ],
       routes: {
-        HomeScreen.routeName: (context) => HomeScreen(),
+        SplashScreen.routeName: (context) => const SplashScreen(),
         IntroMainWrapper.routeName: (context) => IntroMainWrapper(),
         MainWrapper.routeName: (context) => MainWrapper(),
+        HomeScreen.routeName: (context) => HomeScreen(),
       },
       title: 'Shop',
-      home: const SplashScreen(),
     );
   }
 }

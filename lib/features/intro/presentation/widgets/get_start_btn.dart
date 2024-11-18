@@ -37,27 +37,23 @@ class _GetStartBtnState extends State<GetStartBtn>
   Widget build(BuildContext context) {
     return FadeTransition(
       opacity: fadeAnimation,
-      child: SizedBox(
-        height: 45,
-        width: 120,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.amber,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20), // <- Radius
-            ),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.amber,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20), // <- Radius
           ),
-          onPressed: () {
-            widget.onTap();
-          },
-          child: Text(
-            widget.text,
-            style: const TextStyle(
-                fontSize: 17,
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-                fontFamily: 'Vazir'),
-          ),
+        ),
+        onPressed: () {
+          widget.onTap();
+        },
+        child: Text(
+          widget.text,
+          style: const TextStyle(
+              fontSize: 17,
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+              fontFamily: 'Vazir'),
         ),
       ),
     );
