@@ -1,4 +1,3 @@
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 // import 'package:connectivity_plus/connectivity_plus.dart';
@@ -17,7 +16,7 @@ class SplashRepository {
       return true;
     } else if (connectivityResult.contains(ConnectivityResult.wifi)) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }

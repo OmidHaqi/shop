@@ -7,10 +7,8 @@ class SplashState {
 
   SplashState copyWith({
     ConnectionStatus? newConnectionStatus,
-  }){
+  }) {
     return SplashState(
-        connectionStatus: newConnectionStatus ?? connectionStatus
-    );
+        connectionStatus: newConnectionStatus ?? connectionStatus);
   }
 }
-

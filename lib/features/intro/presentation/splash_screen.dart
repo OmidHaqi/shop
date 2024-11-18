@@ -2,12 +2,13 @@ import 'package:delayed_widget/delayed_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:shop/common/utils/custom_snackbar.dart';
+import 'package:shop/common/utils/prefs_operator.dart';
+import 'package:shop/features/home/presentation/home_screen.dart';
 import 'package:shop/features/intro/presentation/bloc/splash_cubit/splash_cubit.dart';
 import 'package:shop/features/intro/presentation/intro_main_wrapper.dart';
+import 'package:shop/locator.dart';
 
 class SplashScreen extends StatefulWidget {
-  
   const SplashScreen({super.key});
 
   @override
@@ -37,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 delayDuration: const Duration(milliseconds: 200),
                 animationDuration: const Duration(milliseconds: 1000),
                 animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
-                child: const Placeholder(),
+                child: const FlutterLogo(),
               ),
             ),
             BlocConsumer<SplashCubit, SplashState>(builder: (ctx, state) {
@@ -98,11 +99,25 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  Future<void> gotoHome()  {
-    return Future.delayed(const Duration(seconds: 3), () {
-      if (!mounted) return;
-      CustomSnackBar.showSnackbar(context, "وارد شدید", Colors.green);
-      Navigator.pushReplacementNamed(context,IntroMainWrapper.routeName);
+  Future<void> gotoHome() {
+    return Future.delayed(const Duration(seconds: 3), () async {
+      PrefsOperator prefsOperator = locator<PrefsOperator>();
+      var shouldSHowIntro = await prefsOperator.getIntroState();
+      if (shouldSHowIntro) {
+        if (!mounted) return;
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          IntroMainWrapper.routeName,
+          ModalRoute.withName("intro_main_wrapper"),
+        );
+      } else {
+        if (!mounted) return;
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          HomeScreen.routeName,
+          ModalRoute.withName("home_screen"),
+        );
+      }
     });
   }
 }

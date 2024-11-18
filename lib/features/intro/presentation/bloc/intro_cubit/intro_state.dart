@@ -7,9 +7,7 @@ class IntroState {
 
   IntroState copyWith({
     bool? newShowGetStart,
-  }){
-    return IntroState(
-        showGetStart: newShowGetStart ?? showGetStart
-    );
+  }) {
+    return IntroState(showGetStart: newShowGetStart ?? showGetStart);
   }
 }

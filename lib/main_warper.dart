@@ -28,7 +28,7 @@ class MainWarper extends StatelessWidget {
       ],
       routes: {
         HomeScreen.routeName: (context) => const HomeScreen(),
-        IntroMainWrapper.routeName: (context) =>  IntroMainWrapper(),
+        IntroMainWrapper.routeName: (context) => IntroMainWrapper(),
       },
       title: 'Shop',
       home: const SplashScreen(),
