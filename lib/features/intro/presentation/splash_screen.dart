@@ -9,6 +9,7 @@ import 'package:shop/features/intro/presentation/intro_main_wrapper.dart';
 import 'package:shop/locator.dart';
 
 class SplashScreen extends StatefulWidget {
+  static const routeName = "/";
   const SplashScreen({super.key});
 
   @override

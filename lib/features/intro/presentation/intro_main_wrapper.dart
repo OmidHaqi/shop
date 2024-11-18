@@ -2,7 +2,7 @@ import 'package:delayed_widget/delayed_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop/common/utils/prefs_operator.dart';
-import 'package:shop/features/home/presentation/home_screen.dart';
+import 'package:shop/common/widgets/main_wrapper.dart';
 import 'package:shop/features/intro/presentation/bloc/intro_cubit/intro_cubit.dart';
 import 'package:shop/features/intro/presentation/widgets/get_start_btn.dart';
 import 'package:shop/features/intro/presentation/widgets/intro_page.dart';
@@ -95,8 +95,8 @@ class IntroMainWrapper extends StatelessWidget {
                         /// goto home screen
                         Navigator.pushNamedAndRemoveUntil(
                           context,
-                          HomeScreen.routeName,
-                          ModalRoute.withName("home_screen"),
+                          MainWrapper.routeName,
+                          ModalRoute.withName("main_wrapper"),
                         );
                       },
                     );
