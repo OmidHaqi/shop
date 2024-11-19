@@ -29,6 +29,15 @@ jobs:
 
       - name: Build Web
         run: flutter build web --release --base-href /shop/
+      
+      - name: Deploy to FTP Server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: build/web/
+          server-dir: /shop/
 
       - name: Checkout web branch (create if not exists)
         run: |
@@ -55,12 +64,3 @@ jobs:
           git push origin web --force
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-
-      - name: Deploy to FTP Server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: build/web/
-          server-dir: /shop/
