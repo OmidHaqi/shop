@@ -45,9 +45,6 @@ jobs:
           mv /tmp/build .
           cp -r build/web/* .
           rm -rf build .dart_tool .flutter-plugins-dependencies .flutter-plugins
-          
-
-
 
       - name: Commit and Push to Web Branch
         run: |
@@ -58,3 +55,12 @@ jobs:
           git push origin web --force
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Deploy to FTP Server
+        uses: SamKirkland/FTP-Deploy-Action@4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: build/web
+          server-dir: /shop
