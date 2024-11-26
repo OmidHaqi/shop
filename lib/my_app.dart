@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shop/common/widgets/main_wrapper.dart';
 import 'package:shop/config/my_theme.dart';
-import 'package:shop/features/home/presentation/home_screen.dart';
 import 'package:shop/features/intro/presentation/intro_main_wrapper.dart';
 import 'package:shop/features/intro/presentation/splash_screen.dart';
 
@@ -31,7 +30,6 @@ class MyApp extends StatelessWidget {
         SplashScreen.routeName: (context) => const SplashScreen(),
         IntroMainWrapper.routeName: (context) => IntroMainWrapper(),
         MainWrapper.routeName: (context) => MainWrapper(),
-        HomeScreen.routeName: (context) => HomeScreen(),
       },
       title: 'Shop',
     );

@@ -9,7 +9,9 @@ class HomeApiProvider {
   dynamic callHomeData() async {
     final response = await dio.get("${Constants.baseUrl}/mainData");
 
-    log(response.toString());
+    log(
+      response.toString(),
+    );
 
     return response;
   }

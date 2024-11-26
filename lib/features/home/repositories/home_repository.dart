@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:shop/common/resources/data_state.dart';
 import 'package:shop/features/home/data/data_source/home_api_provider.dart';
 import 'package:shop/features/home/data/models/home_model.dart';
+
+import '../../../common/resources/data_state.dart';
 
 class HomeRepository {
   HomeApiProvider apiProvider;
@@ -14,10 +15,10 @@ class HomeRepository {
         final HomeModel homeModel = HomeModel.fromJson(response.data);
         return DataSuccess(homeModel);
       } else {
-        return const DataFailed("Failed");
+        return const DataFailed("موفقیت آمیز نبوده");
       }
     } catch (e) {
-      return const DataFailed("Server have problem");
+      return const DataFailed("سرور مشکل دارد");
     }
   }
 }

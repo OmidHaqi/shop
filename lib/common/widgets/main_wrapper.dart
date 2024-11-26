@@ -1,5 +1,6 @@
-import 'package:shop/common/widgets/bottom_nav.dart';
 import 'package:flutter/material.dart';
+import 'package:shop/common/widgets/bottom_nav.dart';
+import 'package:shop/features/home/presentation/screens/home_screen.dart';
 
 class MainWrapper extends StatelessWidget {
   static const routeName = "/main_wrapper";
@@ -9,9 +10,7 @@ class MainWrapper extends StatelessWidget {
   final PageController pageController = PageController();
 
   final List<Widget> topLevelScreens = [
-    Container(
-      color: Colors.red,
-    ),
+    const HomeScreen(),
     Container(
       color: Colors.black,
     ),
@@ -23,14 +22,24 @@ class MainWrapper extends StatelessWidget {
     ),
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNav(controller: pageController),
-      body: PageView(
-        controller: pageController,
-        children: topLevelScreens,
+      body: Column(
+        children: [
+          /// search box
+
+          const SizedBox(
+            height: 60,
+          ),
+          Expanded(
+            child: PageView(
+              controller: pageController,
+              children: topLevelScreens,
+            ),
+          ),
+        ],
       ),
     );
   }
