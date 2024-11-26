@@ -14,10 +14,10 @@ class HomeRepository {
         final HomeModel homeModel = HomeModel.fromJson(response.data);
         return DataSuccess(homeModel);
       } else {
-        return const DataFailed("موفقیت آمیز نبوده");
+        return const DataFailed("Failed");
       }
     } catch (e) {
-      return const DataFailed("سرور مشکل دارد");
+      return const DataFailed("Server have problem");
     }
   }
 }
