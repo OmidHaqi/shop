@@ -67,9 +67,7 @@ class BottomNav extends StatelessWidget {
                       curve: Curves.easeInOut);
                 },
                 icon: Icon(
-                  state == 3
-                      ? Icons.shopping_bag
-                      : Icons.shopping_bag_outlined,
+                  state == 3 ? Icons.shopping_bag : Icons.shopping_bag_outlined,
                 ),
               ),
             ],

@@ -57,7 +57,7 @@ class IntroMainWrapper extends StatelessWidget {
                 height: height * 0.6,
               ),
             ),
-    
+
             Positioned(
               bottom: height * 0.1,
               child: SizedBox(
@@ -66,8 +66,7 @@ class IntroMainWrapper extends StatelessWidget {
                 child: PageView(
                   onPageChanged: (index) {
                     if (index == 2) {
-                      BlocProvider.of<IntroCubit>(context)
-                          .changeGetStart(true);
+                      BlocProvider.of<IntroCubit>(context).changeGetStart(true);
                     } else {
                       BlocProvider.of<IntroCubit>(context)
                           .changeGetStart(false);
@@ -78,7 +77,7 @@ class IntroMainWrapper extends StatelessWidget {
                 ),
               ),
             ),
-    
+
             /// GetStarted Btn
             Positioned(
               bottom: height * 0.07,
@@ -89,9 +88,9 @@ class IntroMainWrapper extends StatelessWidget {
                     return GetStartBtn(
                       text: 'شروع کنید',
                       onTap: () {
-                        PrefsOperator prefsOperator =
-                            locator<PrefsOperator>();
+                        PrefsOperator prefsOperator = locator<PrefsOperator>();
                         prefsOperator.changeIntroState();
+
                         /// goto home screen
                         Navigator.pushNamedAndRemoveUntil(
                           context,
@@ -116,7 +115,7 @@ class IntroMainWrapper extends StatelessWidget {
                               BlocProvider.of<IntroCubit>(context)
                                   .changeGetStart(true);
                             }
-    
+
                             pageController.animateToPage(
                                 pageController.page!.toInt() + 1,
                                 duration: const Duration(milliseconds: 400),
@@ -129,7 +128,7 @@ class IntroMainWrapper extends StatelessWidget {
                 },
               ),
             ),
-    
+
             Positioned(
               bottom: height * 0.07,
               left: 30,
@@ -137,8 +136,7 @@ class IntroMainWrapper extends StatelessWidget {
                 delayDuration:
                     const Duration(milliseconds: 300), // Not required
                 animationDuration: const Duration(seconds: 1), // Not required
-                animation:
-                    DelayedAnimations.SLIDE_FROM_BOTTOM, // Not required
+                animation: DelayedAnimations.SLIDE_FROM_BOTTOM, // Not required
                 child: SmoothPageIndicator(
                   controller: pageController,
                   count: 3,
